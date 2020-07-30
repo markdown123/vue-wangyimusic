@@ -1,0 +1,46 @@
+<template>
+  <div>
+    <div class="main-header">
+      <i class="el-icon-arrow-left"></i>
+      <slot></slot>
+      <!-- 搜索框 -->
+      <div class="search">
+        <el-input placeholder="请输入歌曲名"  class="input-with-select">
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  created() {},
+  methods: {},
+};
+</script>
+
+<style lang="less" scoped>
+.main-header {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #F6F6F6;
+
+    .el-icon-arrow-left {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+
+    }
+    .search {
+        position: absolute;
+        right: 20px;
+        outline: none;
+        
+    }
+}
+</style>
