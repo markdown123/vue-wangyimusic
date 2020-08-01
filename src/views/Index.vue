@@ -93,7 +93,7 @@
             :controls="true"
             :listFolded="true"
             :lrcType="1"
-            :repeat="list-repeat"
+            repeat="list-repeat"
             :showLrc="isShowLrc"
             @loadstart="loadStartMusic"
           ></aplayer>

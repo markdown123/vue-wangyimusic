@@ -1,14 +1,14 @@
 <template>
   <div>
     <nav-header>
-      <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane type="danger" label="歌手" name="first">
+      <el-tabs active-color="red" v-model="activeName">
+        <el-tab-pane type="danger" label="歌手" name="singer">
           <div class="header">收藏的歌手({{collectCount}})</div>
 
           <!-- 卡片区，收藏歌手列表 -->
           <div class="card">
             <div class="cardItem" v-for="(item,i) in collectData" 
-            :key="i" @click="getSingerSongs(item.id)">
+            :key="i" @click="toSingerList(item.id)">
               <img :src="item.img1v1Url" alt />
               <span>{{item.name}}</span>
               <span>专辑:{{item.albumSize}}</span>
@@ -38,6 +38,7 @@ export default {
       collectCount: 0,
       collectVideoData: [],
       videoCount : 0,
+      activeName: "singer"
     };
   },
   components: {
@@ -68,18 +69,28 @@ export default {
       } catch (error) {}
     },
     // 获取歌手热门歌曲
-    async getSingerSongs(id) {
-        const {data:res} = await this.$request.get(`/artist/top/song?id=${id}`)
-        console.log(res);
+    toSingerList(id) {
+        // const {data:res} = await this.$request.get(`/artist/top/song?id=${id}`)
+        // console.log(res);
+        this.$router.push(`/singerlist/${id}`)
     }
   },
 };
 </script>
 
 <style lang="less" scoped>
+   .el-tabs__item.is-active{
+    color: red;
+  }
+
+    .el-tabs__active-bar{
+    background-color: red;
+    }
+
 .el-tabs {
   float: left;
   padding-left: 40px;
+
 
   .header {
     height: 60px;

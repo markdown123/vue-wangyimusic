@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Index from '../views/Index.vue'
 import PlayList from '../components/music/PlayList.vue'
 import Collection from '../components/Collection.vue'
+import SingerList from '../components/song/SingerList.vue'
 
 Vue.use(VueRouter)
 
@@ -10,7 +11,8 @@ const routes = [
   { path: '/', component: Index,
     children: [
       {path: '/playlist',component: PlayList},
-      {path: '/collection',component: Collection}
+      {path: '/collection',component: Collection},
+      {path: '/singerlist/:id',component: SingerList},
     ]
   }
 ]
