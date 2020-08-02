@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="main-header">
-      <i class="el-icon-arrow-left"></i>
+      <i class="el-icon-arrow-left"  @click="$router.push(returnLink)"></i>
       <slot></slot>
       <!-- 搜索框 -->
       <div class="search">
@@ -15,8 +15,17 @@
 
 <script>
 export default {
+   props: {
+    returnLink: {
+      type: String,
+      default: '/music',
+      required: false
+    }
+  },
   data() {
-    return {};
+    return {
+
+    };
   },
   created() {},
   methods: {},
@@ -34,6 +43,7 @@ export default {
         position: absolute;
         top: 10px;
         left: 10px;
+        cursor: pointer;
 
     }
     .search {

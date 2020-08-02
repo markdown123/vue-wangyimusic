@@ -1,0 +1,12 @@
+.el-card__body{padding: 0;height: 100%;}
+.el-card__body img{width: 100%;height: 100%;}
+.el-tabs__nav{margin-left: 20px;}
+.el-tabs__header{background: #f6f6f6;}
+.el-tab-pane {
+    overflow: hidden scroll;
+    float: left;
+    height: 434px;
+}
+.el-tabs__item:hover{color: red!important;}
+.el-tabs__item.is-active{color: red!important;}
+.el-tabs__active-bar{background: red;}

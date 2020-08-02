@@ -37,7 +37,7 @@
             unique-opened
             :default-active="activePath"
           >
-            <el-menu-item index="music">
+            <el-menu-item index="music" @click="toMusic">
               <i class="el-icon-headset"></i>
               <span slot="title">发现音乐</span>
             </el-menu-item>
@@ -463,6 +463,9 @@ export default {
     },
     toCollection() {
       this.$router.push('/collection')
+    },
+    toMusic() {
+      this.$router.push('/music')
     }
   },
   // 监听菜单切换
@@ -473,7 +476,8 @@ export default {
       } else if (to.path.replace('/', '') === 'music') {
         this.activePath = 'music'
       }
-    }
+    },
+    
   },
 };
 </script>
@@ -483,8 +487,8 @@ export default {
   width: 1000px;
   background: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.23);
-  height: 800px;
-  margin: 0 auto;
+  height: 550px;
+  margin: 50px auto;
 
   .row-home {
     position: relative;

@@ -196,6 +196,12 @@ export default {
       }
       .headerText4 {
         margin-top: 5px;
+                 
+          span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        
       }
       .headerText5 {
         margin-top: 7px;
