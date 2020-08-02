@@ -511,11 +511,11 @@ export default {
       }
       .el-icon-caret-left {
         left: 50%;
-        margin-left: -55px;
+        margin-left: -70px;
       }
       .el-icon-caret-right {
         right: 50%;
-        margin-right: -140px;
+        margin-right: -100px;
       }
       .aplayer {
         margin: 0 !important;

@@ -10,7 +10,7 @@ import DailyRecommend from '../components/music/DailyRecommend.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: Index,
+  { path: '/', component: Index, redirect: '/music',
     children: [
       {path: '/playlist',component: PlayList},
       {path: '/collection',component: Collection},

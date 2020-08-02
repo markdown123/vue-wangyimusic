@@ -6,7 +6,69 @@
     overflow: hidden scroll;
     float: left;
     height: 434px;
+    width: 797px;
 }
 .el-tabs__item:hover{color: red!important;}
 .el-tabs__item.is-active{color: red!important;}
 .el-tabs__active-bar{background: red;}
+.el-table .cell{line-height: 16px; font-size: 13px;}
+.el-table .cell{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap!important;
+    cursor: pointer;
+}
+
+/* 播放器 */
+.aplayer .aplayer-body {
+    position: relative;   
+}
+.aplayer{overflow: visible!important;}
+
+/* 进度条 */
+.aplayer-controller, .aplayer-controller .aplayer-time{
+    position: static!important;
+    top: 0;
+}
+.aplayer-bar-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-color: red; */
+    width: 1000px;
+}
+.aplayer-played {
+    background-color: red !important;
+}
+
+/* 图片 */
+.aplayer-pic {
+    margin-top: 3px;
+}
+
+/* 播放按钮 */
+.aplayer-pic .aplayer-button {
+    position: absolute;
+    left: 500px;
+}
+/* .aplayer-pic .aplayer-button.aplayer-play {
+    background-color: red;
+    width: 32px;
+    height: 32px;
+    
+} */
+.aplayer-pic .aplayer-button.aplayer-pause,
+.aplayer-pic .aplayer-button.aplayer-play {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: red;
+    width: 32px;
+    height: 32px;
+}
+.aplayer-pic .aplayer-button.aplayer-pause svg,
+.aplayer-pic .aplayer-button.aplayer-play svg {
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+}
