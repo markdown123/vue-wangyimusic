@@ -49,6 +49,7 @@ export default {
     .search {
         position: absolute;
         right: 20px;
+        top: 0;
         outline: none;
         
     }

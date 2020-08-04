@@ -93,7 +93,6 @@
             :controls="true"
             :listFolded="true"
             :lrcType="1"
-            repeat="list-repeat"
             :showLrc="isShowLrc"
             @loadstart="loadStartMusic"
           ></aplayer>
@@ -487,7 +486,7 @@ export default {
   width: 1000px;
   background: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.23);
-  height: 550px;
+  height: 540px;
   margin: 50px auto;
 
   .row-home {
@@ -624,8 +623,8 @@ export default {
   height: 18px;
   display: inline-block;
   position: absolute;
-  top: 15px;
-  right: 150px;
+  top: 22px;
+  right: 142px;
   box-sizing: border-box;
   text-align: center;
   line-height: 18px;

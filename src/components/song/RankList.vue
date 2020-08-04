@@ -45,9 +45,6 @@ export default {
         `top/list?id=${991319590}`
       );
 
-      console.log(res1.playlist);
-      console.log(res2.playlist);
-      console.log(res1.playlist);
 
       this.dealRankMsg(res1.playlist);
       this.dealRankMsg(res2.playlist);

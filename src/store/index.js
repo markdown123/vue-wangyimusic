@@ -13,6 +13,8 @@ export default new Vuex.Store({
       pic: '',
     },
     controlMsc: {},
+    // 最新歌曲页面选中状态
+    newMusicStatus: true
   },
   mutations: {
     // 接收播放对象
@@ -53,6 +55,10 @@ export default new Vuex.Store({
     // 开始播放音乐
     autoPlayMusic(state){
       state.controlMsc.play()
+    },
+    // 改变最新音乐页面的选中状态
+    changeNewMusicStatus(state,str) {
+      state.newMusicStatus = str
     }
   },
   actions: {
