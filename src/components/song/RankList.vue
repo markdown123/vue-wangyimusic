@@ -37,14 +37,13 @@ export default {
   methods: {
     async getRankList() {
       // const {data: res} = await this.$request.get(`/playlist/catlist`)
-      const { data: res1 } = await this.$request.get(`top/list?id=${19723756}`);
-      const { data: res2 } = await this.$request.get(`top/list?id=${3779629}`);
-      const { data: res3 } = await this.$request.get(`top/list?id=${2884035}`);
-      const { data: res4 } = await this.$request.get(`top/list?id=${3778678}`);
+      const { data: res1 } = await this.$request.get(`/playlist/detail?id=${19723756}`);
+      const { data: res2 } = await this.$request.get(`/playlist/detail?id=${3779629}`);
+      const { data: res3 } = await this.$request.get(`/playlist/detail?id=${2884035}`);
+      const { data: res4 } = await this.$request.get(`/playlist/detail?id=${3778678}`);
       const { data: res5 } = await this.$request.get(
-        `top/list?id=${991319590}`
+        `/playlist/detail?id=${991319590}`
       );
-
 
       this.dealRankMsg(res1.playlist);
       this.dealRankMsg(res2.playlist);

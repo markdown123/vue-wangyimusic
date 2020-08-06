@@ -152,8 +152,7 @@ export default {
 .main-list {
   width: 100%;
   height: 434px;
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow: hidden scroll;
 
   .list-header {
     display: flex;
@@ -215,6 +214,7 @@ export default {
   }
 
   .el-table {
+    overflow-x: hidden !important;
     cursor: pointer;
   }
 }

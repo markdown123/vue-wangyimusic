@@ -2,6 +2,10 @@ html {
     overflow: hidden;
 }
 
+.el-table--scrollable-x .el-table__body-wrapper {
+    overflow-x: hidden;
+}
+
 .el-card__body{padding: 0;height: 100%;}
 .el-card__body img{width: 100%;height: 100%;}
 .el-tabs__nav{margin-left: 20px;}
@@ -106,15 +110,16 @@ html {
 }
 
 .aplayer-list{
-    height: 490px!important;
+    height: 380px!important;
     position: absolute;
     bottom: 74px;
     background: #fff;
     right: 0;
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.24) ;
     width: 320px;
+    overflow: hidden scroll;
   }
-  .aplayer-list ol {height: 490px!important;}
+  .aplayer-list ol {height: 380px!important;}
   .aplayer-list ol li .aplayer-list-author{width: 100px;white-space: nowrap;text-overflow:ellipsis;overflow: hidden;}
   .aplayer-list ol li .aplayer-list-title{width: 160px;white-space: nowrap;text-overflow:ellipsis;overflow: hidden;}
   

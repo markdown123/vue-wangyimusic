@@ -14,7 +14,9 @@ export default new Vuex.Store({
     },
     controlMsc: {},
     // 最新歌曲页面选中状态
-    newMusicStatus: true
+    newMusicStatus: true,
+    // 热搜框是否显示
+    isShow: false,
   },
   mutations: {
     // 接收播放对象
@@ -29,9 +31,9 @@ export default new Vuex.Store({
     // 传入歌曲对象,设置当前播放
     setPlayMusic(state,obj) {
       state.playMusic = obj
+      
+
       // 设置播放列表musiclist
-      console.log(obj);
-      console.log(state.controlMsc)
       // 如果选择的歌曲在列表内
       if (JSON.parse(window.sessionStorage.getItem('musiclist')) !== null) {
         const id = state.controlMsc.musicList.findIndex(item => obj.id === item.id)
@@ -40,12 +42,16 @@ export default new Vuex.Store({
           state.controlMsc.musicList.splice(id, 1)
         }
         state.controlMsc.musicList.unshift(obj)
+        
+        console.log(state.controlMsc.playIndex);
         window.sessionStorage.setItem('musiclist', JSON.stringify(state.controlMsc.musicList))
       } else {
         // 如果选择的歌曲不在列表内
         state.controlMsc.musicList.unshift(obj)
+        
         window.sessionStorage.setItem('musiclist', JSON.stringify(state.controlMsc.musicList))
       }
+      console.log(state.controlMsc);
     },
      
      // 播放器记一次加载
@@ -59,6 +65,10 @@ export default new Vuex.Store({
     // 改变最新音乐页面的选中状态
     changeNewMusicStatus(state,str) {
       state.newMusicStatus = str
+    },
+    // 显示热搜框
+    showSearch(state,str) {
+      state.isShow = str
     }
   },
   actions: {
@@ -67,7 +77,8 @@ export default new Vuex.Store({
         context.commit('autoPlayMusic')
       }, 1000)
       context.commit('setPlayMusic',obj)
-    }
+    },
+   
   },
   modules: {
   }

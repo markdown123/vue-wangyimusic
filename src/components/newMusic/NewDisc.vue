@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <div class="header">全部专辑</div>
+  <div class="main">
+    <div class="header">
+      <ul>
+        <li v-for="(item,i) in area" :key="i"
+        :class="selectIndex === i ? 'select': ''"
+        @click="selectChange(i,item)">{{item.name}}</li>
+      </ul>
+    </div>
     <div class="box">
-      <el-row>
+      <el-row >
         <el-col :span="6" v-for="(item,i) in newDisc" :key="i">
           <img :src="item.pic" alt @click="linkSongsDisc(item.id)" />
           <div @click="linkSongsDisc(item.id)">{{item.name}}</div>
@@ -12,11 +18,10 @@
 
       <div class="main-page">
         <el-pagination
-            @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
           :current-page="(queryInfo.offset/queryInfo.limit) + 1"
-          :page-sizes="[8,16,24]"         
-          :page-size="queryInfo.limit"
+                  
+          :page-size="8"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
         ></el-pagination>
@@ -29,11 +34,20 @@
 export default {
   data() {
     return {
+      selectIndex: 0,
       queryInfo: {
         type: 0,
         offset: 0,
-        limit: 8,
+        limit: 30,
+        area: "ALL",
       },
+      area: [
+        {name: '全部',value: 'ALL'},
+        {name: '华语',value: 'ZH'},
+        {name: '欧美',value: 'EA'},
+        {name: '韩国',value: 'KR'},
+        {name: '日本',value: 'JP'},
+      ],
       total: 0,
       //   月新碟数据
       newDisc: [],
@@ -46,10 +60,11 @@ export default {
     // 获得新碟数据
     async getDisc() {
         this.newDisc = []
-      const { data: res } = await this.$request.get(`/top/album?
-      offset=${this.queryInfo.offset}&limit=${this.queryInfo.limit}`);
+      const { data: res } = await this.$request.get(`/album/new`,{
+        params: this.queryInfo
+      });
       console.log(res);
-      res.monthData.forEach((item) => {
+      res.albums.forEach((item) => {
         const obj = {};
         obj.name = item.name;
         obj.id = item.id;
@@ -66,16 +81,20 @@ export default {
       this.total = this.newDisc.length
       console.log(this.newDisc);
     },
-    handleSizeChange(size) {
-        this.queryInfo.limit = size
-        this.getDisc()
+      // 切换选择地区
+    selectChange(i,item) {
+      this.selectIndex = i
+      this.queryInfo.area = item.value
+      this.getDisc()
     },
+
     handleCurrentChange(page) {
         console.log(page);
         this.queryInfo.offset = (page-1) * this.queryInfo.limit
-        
+        this.queryInfo.limit = 8
         this.getDisc()
     },
+  
     // 跳转到歌手歌单
     linkSingerSongs(id) {
       this.$router.push(`/singerlist/${id}`);
@@ -90,11 +109,38 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.box {
+.header {
   margin: 0 30px;
+}
+.select {
+  color: red;
+}
+ul {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+ul li {
+  float: left;
+  padding: 0 20px;
+  cursor: pointer;
+}
+.box {
+  position: relative;
+  margin: 0 30px;
+
+  // .el-row {
+  //   position: absolute;
+  //   top: 50px;
+  //   overflow: hidden;
+  // }
 
   .el-col {
     margin-bottom: 30px;
+    margin-right: 20px;
+    width: 160px;
   }
   img {
     width: 158px;
@@ -110,5 +156,12 @@ export default {
     overflow: hidden;
     cursor: pointer;
   }
+}
+.main {
+  position: relative;
+}
+.main-page {
+  position: absolute;
+  
 }
 </style>

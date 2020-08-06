@@ -7,6 +7,7 @@ import SingerList from '../components/song/SingerList.vue'
 import FindMusic from '../components/FindMusic.vue'
 import DailyRecommend from '../components/music/DailyRecommend.vue'
 import Album from '../components/music/Album.vue'
+import SearchList from '../components/search/SearchList.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const routes = [
       {path: '/music',component: FindMusic},
       {path: '/dailyrecommend',component: DailyRecommend},
       {path: '/album',component: Album},
+      {path: '/searchlist',component: SearchList},
     ]
   }
 ]

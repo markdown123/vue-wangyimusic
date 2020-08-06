@@ -95,7 +95,13 @@
             :lrcType="1"
             :showLrc="isShowLrc"
             @loadstart="loadStartMusic"
-          ></aplayer>
+          >
+           <aplayer-list>
+          <ol>
+            <li>清除所有</li>
+          </ol>
+        </aplayer-list>
+          </aplayer>
           <i class="el-icon-caret-left el-icon-common" @click="skipBackwardSong"></i>
           <i class="el-icon-caret-right el-icon-common" @click="skipForwardSong"></i>
           <i
@@ -207,8 +213,8 @@ export default {
         ],
       },
       // 是否切换登录区
-      userInfoStatus: true,
-      userInfo: {},
+      userInfoStatus: JSON.parse(window.localStorage.getItem('isShowInfo')),
+      userInfo: JSON.parse(window.localStorage.getItem('userInfo')),
       // 用户歌单
       userMusicList: [],
       // 选中的歌单
@@ -273,9 +279,11 @@ export default {
       } else {
         return [];
       }
-    },
+    }, 
   },
+  
   created() {
+    this.getUserInfo()
     // 记录当前播放
     if (
       window.sessionStorage.getItem("musiclist") &&
@@ -369,12 +377,13 @@ export default {
         }
         this.$message.success("登录成功");
 
-        console.log(res);
-      });
-
-      this.getUserInfo();
+       
+       this.getUserInfo();
 
       this.loginDialogVisible = false;
+      });
+
+        
     },
     // 获得用户信息
     async getUserInfo() {
@@ -389,7 +398,9 @@ export default {
         );
         console.log(res1);
         this.userInfoStatus = false;
+        window.localStorage.setItem('isShowInfo',JSON.stringify(false))
         this.userInfo = res.profile;
+        window.localStorage.setItem('userInfo',JSON.stringify(this.userInfo))
         this.userMusicList = res1.playlist;
       } catch (error) {}
     },
@@ -403,17 +414,20 @@ export default {
     // 下一首
     skipForwardSong() {
       console.log(this.$refs.musicRef);
+      var step = 1;
       // 当前播放歌曲的索引
-      let step = 1;
-      if (this.$refs.musicRef.playIndex == -1) {
-        step = 2;
-      }
+      // if(this.$refs.musicRef.playIndex === -1) {
+      //   this.$refs.musicRef.playIndex = 0
+      // } 
+      console.log(this.$refs.musicRef.playIndex);
       const listLength = this.$refs.musicRef.musicList.length;
       // 判断是否播放到了最后一首，然后重新回到第一首
       this.$refs.musicRef.playIndex =
         this.$refs.musicRef.playIndex === listLength - 1
           ? 0
           : this.$refs.musicRef.playIndex + step;
+      console.log(this.$refs.musicRef.playIndex); 
+      // this.$store.state.playIndex.push(this.$refs.musicRef.playIndex)
       // 播放下一首
       setTimeout(() => {
         this.$refs.musicRef.play()
